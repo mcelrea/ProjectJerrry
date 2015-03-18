@@ -23,6 +23,7 @@ public class GameplayScreen implements Screen {
     @Override
     public void show() {
         world = new World(new Vector2(0,-9.81f), true);
+        world.setContactFilter(new MyContactFilter());
         camera = new OrthographicCamera();
         debugRenderer = new Box2DDebugRenderer();
         player = new Player(world);
@@ -50,6 +51,8 @@ public class GameplayScreen implements Screen {
     }
 
     private void updatePlayer(float delta) {
+
+        player.update();
 
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveRight();

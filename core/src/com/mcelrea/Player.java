@@ -9,6 +9,7 @@ public class Player {
 
     private Body body;
     private boolean canJump;
+    private int jumpCount;
 
     public Player(World world) {
 
@@ -48,8 +49,23 @@ public class Player {
         if(canJump) {
             body.applyLinearImpulse(0, 13000, body.getPosition().x,
                     body.getPosition().y, true);
-            canJump = false;
+            jumpCount++;
+            if(jumpCount == 2) {
+                canJump = false;
+                jumpCount = 0;
+            }
         }
+    }
+    
+    public void update() {
+        if(Math.abs(body.getLinearVelocity().y) <= 0.00001) {
+            canJump = true;
+        }
+        System.out.println(body.getLinearVelocity().y);
+    }
+
+    public void resetJump() {
+        canJump = true;
     }
 
 }
