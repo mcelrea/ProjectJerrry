@@ -68,4 +68,7 @@ public class Player {
         canJump = true;
     }
 
+    public Body getBody() {
+        return body;
+    }
 }

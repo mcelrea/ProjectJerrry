@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
+import java.util.ArrayList;
+
 /**
  * Created by Tech on 3/16/2015.
  */
@@ -19,9 +21,11 @@ public class GameplayScreen implements Screen {
     Box2DDebugRenderer debugRenderer;
     Player player;
     Map currentMap;
+    public static ArrayList<Enemy> enemies;
 
     @Override
     public void show() {
+        enemies = new ArrayList<Enemy>();
         world = new World(new Vector2(0,-9.81f), true);
         world.setContactFilter(new MyContactFilter());
         camera = new OrthographicCamera();
@@ -29,6 +33,7 @@ public class GameplayScreen implements Screen {
         player = new Player(world);
         currentMap = new Map1();
         currentMap.createMap(world);
+
     }
 
     @Override
@@ -38,6 +43,9 @@ public class GameplayScreen implements Screen {
 
         update(delta);
 
+        camera.position.set(player.getBody().getPosition().x,
+                            0,
+                            0);
         camera.update();
 
         world.step(1/60f, 8, 3);
@@ -48,6 +56,13 @@ public class GameplayScreen implements Screen {
     private void update(float delta) {
 
         updatePlayer(delta);
+        updateEnemies(delta);
+    }
+
+    private void updateEnemies(float delta) {
+        for(int i=0; i < enemies.size(); i++) {
+            enemies.get(i).act(world, delta);
+        }
     }
 
     private void updatePlayer(float delta) {

@@ -10,22 +10,16 @@ public class Map1 implements Map{
     @Override
     public void createMap(World world) {
 
-        BodyDef bodyDef = new BodyDef();
-        FixtureDef fixtureDef = new FixtureDef();
+        new MediumPlatform(world, 0, -3);
+        new MediumPlatform(world, 10, 4);
+        new LargePlatform(world, 30, -5);
+        new SmallPlatform(world, -10, 0);
+        new BoxPlatform(world, 35, 10);
 
-        //platform 1-1
-        bodyDef.type = BodyDef.BodyType.StaticBody;
-        bodyDef.position.set(0,-3);
-        PolygonShape plat = new PolygonShape();
-        plat.setAsBox(10, 2);
-        fixtureDef.shape = plat;
-        fixtureDef.friction = 0f;
-        fixtureDef.restitution = 0f;
-        fixtureDef.density = 800;
-        Body temp = world.createBody(bodyDef);
-        temp.createFixture(fixtureDef);
-        temp.getFixtureList().first().setUserData("platform");
-        plat.dispose();
+        GameplayScreen.enemies.add(new RandomMovementEnemy(world, 10, 10));
+        GameplayScreen.enemies.add(new RandomMovementEnemy(world, 15, 10));
+        GameplayScreen.enemies.add(new RandomMovementEnemy(world, 18, 10));
+        GameplayScreen.enemies.add(new RandomMovementEnemy(world, 1, 10));
 
     }
 
