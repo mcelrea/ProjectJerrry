@@ -10,6 +10,8 @@ public class Player {
     private Body body;
     private boolean canJump;
     private int jumpCount;
+    private int jumpPulse = 13000;
+    private boolean fly = false;
 
     public Player(World world) {
 
@@ -46,8 +48,8 @@ public class Player {
     }
 
     public void jump() {
-        if(canJump) {
-            body.applyLinearImpulse(0, 13000, body.getPosition().x,
+        if(fly || canJump) {
+            body.applyLinearImpulse(0, jumpPulse, body.getPosition().x,
                     body.getPosition().y, true);
             jumpCount++;
             if(jumpCount == 2) {
@@ -70,5 +72,13 @@ public class Player {
 
     public Body getBody() {
         return body;
+    }
+
+    public boolean isFly() {
+        return fly;
+    }
+
+    public void setFly(boolean fly) {
+        this.fly = fly;
     }
 }

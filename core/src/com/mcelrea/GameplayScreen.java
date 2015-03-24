@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
@@ -19,18 +21,24 @@ public class GameplayScreen implements Screen {
     World world;
     OrthographicCamera camera;
     Box2DDebugRenderer debugRenderer;
+    SpriteBatch batch;
     Player player;
     Map currentMap;
     public static ArrayList<Enemy> enemies;
+    boolean debug = true;
+    BitmapFont font;
 
     @Override
     public void show() {
         enemies = new ArrayList<Enemy>();
         world = new World(new Vector2(0,-9.81f), true);
         world.setContactFilter(new MyContactFilter());
+        batch = new SpriteBatch();
+        font = new BitmapFont();
         camera = new OrthographicCamera();
         debugRenderer = new Box2DDebugRenderer();
         player = new Player(world);
+        player.setFly(false);
         currentMap = new Map1();
         currentMap.createMap(world);
 
@@ -50,7 +58,18 @@ public class GameplayScreen implements Screen {
 
         world.step(1/60f, 8, 3);
 
+        batch.begin();
+        if(debug)
+            drawDebugGUI();
+        batch.end();
+
+
         debugRenderer.render(world, camera.combined);
+    }
+
+    private void drawDebugGUI() {
+        font.draw(batch, "x: " + player.getBody().getPosition().x, 5, 400);
+        font.draw(batch, "y: " + player.getBody().getPosition().y, 5, 380);
     }
 
     private void update(float delta) {
