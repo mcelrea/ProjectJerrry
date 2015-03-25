@@ -10,6 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mcelrea.com.mcelrea.maps.Map;
+import com.mcelrea.com.mcelrea.maps.Map1;
+import com.mcelrea.enemies.Enemy;
 
 import java.util.ArrayList;
 

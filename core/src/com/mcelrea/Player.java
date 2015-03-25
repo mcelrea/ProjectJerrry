@@ -60,9 +60,9 @@ public class Player {
     }
     
     public void update() {
-        if(Math.abs(body.getLinearVelocity().y) <= 0.00001) {
-            canJump = true;
-        }
+//        if(Math.abs(body.getLinearVelocity().y) <= 0.00001) {
+//            canJump = true;
+//        }
         System.out.println(body.getLinearVelocity().y);
     }
 

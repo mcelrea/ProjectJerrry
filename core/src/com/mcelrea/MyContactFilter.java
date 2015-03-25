@@ -11,16 +11,18 @@ public class MyContactFilter implements ContactFilter{
     @Override
     public boolean shouldCollide(Fixture fixtureA, Fixture fixtureB) {
 
-//        if(fixtureA.getUserData() instanceof Player &&
-//                fixtureB.getUserData().equals("platform")) {
-//            ((Player)(fixtureA.getUserData())).resetJump();
-//            System.out.println("Contact");
-//        }
-//        else if(fixtureB.getUserData() instanceof Player &&
-//                fixtureA.getUserData().equals("platform")) {
-//            ((Player)(fixtureB.getUserData())).resetJump();
-//            System.out.println("Contact");
-//        }
+        if(fixtureA.getUserData() instanceof Player &&
+                fixtureB.getUserData().equals("platform")) {
+            if(fixtureA.getBody().getPosition().y > fixtureB.getBody().getPosition().y)
+                ((Player)(fixtureA.getUserData())).resetJump();
+
+        }
+        else if(fixtureB.getUserData() instanceof Player &&
+                fixtureA.getUserData().equals("platform")) {
+            if(fixtureB.getBody().getPosition().y > fixtureA.getBody().getPosition().y)
+                ((Player)(fixtureB.getUserData())).resetJump();
+
+        }
 
 
 
