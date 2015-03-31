@@ -1,5 +1,6 @@
 package com.mcelrea.com.mcelrea.maps;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
@@ -9,4 +10,5 @@ public interface Map {
 
     public void createMap(World world);
     public void destroyMap(World world);
+    public void act(World world, OrthographicCamera camera, float delta);
 }

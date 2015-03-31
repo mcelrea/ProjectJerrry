@@ -1,5 +1,6 @@
 package com.mcelrea.com.mcelrea.maps;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mcelrea.*;
 import com.mcelrea.enemies.KinematicEnemy;
@@ -34,6 +35,11 @@ public class Map1 implements Map{
 
     @Override
     public void destroyMap(World world) {
+
+    }
+
+    @Override
+    public void act(World world, OrthographicCamera camera, float delta) {
 
     }
 }
