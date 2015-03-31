@@ -14,10 +14,12 @@ public class Map1 implements Map{
     @Override
     public void createMap(World world) {
 
-        new MediumPlatform(world, 0, -3);
+        new MediumPlatform(world, 0, -4);
         new MediumPlatform(world, 10, 4);
+        new MediumPlatform(world, 11, 14f);
         new LargePlatform(world, 30, -5);
-        new SmallPlatform(world, -10, 0);
+        new SmallPlatform(world, -13, 0);
+        new SmallPlatform(world, 30, 3);
         new BoxPlatform(world, 35, 10);
 
         GameplayScreen.enemies.add(new RandomMovementEnemy(world, 10, 10));
